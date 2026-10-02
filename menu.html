@@ -1,5 +1,5 @@
  <style>
-        /* --- NOUVEL EFFET VISUEL : NEURAL BACKGROUND --- */
+ /* --- NOUVEL EFFET VISUEL : NEURAL BACKGROUND --- */
         #neural-canvas {
             position: fixed;
             top: 0; left: 0;
@@ -8,6 +8,73 @@
             background: radial-gradient(circle at center, #001520 0%, #050505 100%);
         }
 
+        /* --- MODE SOBRE (accessibilité) --- */
+        body.mode-sobre, body.mode-sobre * { animation: none !important; transition: none !important; }
+        body.mode-sobre #neural-canvas { display: none !important; }
+        #toggle-sobre-btn {
+            position: fixed; top: 10px; right: 10px; z-index: 10001;
+            background: #000; color: #00d4ff; border: 1px solid #00d4ff;
+            padding: 6px 10px; font-size: 0.7em; cursor: pointer; font-family: inherit; border-radius: 3px;
+        }
+
+        body { color: #00d4ff; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px; margin: 0; overflow-x: hidden; }
+        
+        .terminal { 
+            background: rgba(0, 16, 21, 0.95); 
+            border: 3px double #00d4ff; 
+            padding: 30px; width: 90%; 
+            max-width: 800px; 
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.3); 
+            border-radius: 15px; 
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .header-s3 { border-bottom: 2px solid #00d4ff; margin-bottom: 30px; padding-bottom: 15px; font-size: 1.5em; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; }
+
+        /* STYLE CONTEXTE HISTOIRE S3 */
+        .story-context {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid #00d4ff;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+            font-size: 0.95em;
+            color: #e0faff;
+            line-height: 1.4;
+        }
+
+        #lock-screen { padding: 40px; }
+        #pre-requis-screen, #mission-content, #victory-zone { display: none; }
+
+        .investigation-box { background: #000; border: 1px dashed #00d4ff; padding: 15px; margin: 20px 0; text-align: left; font-family: 'Courier New', monospace; font-size: 0.9em; color: #00ff41; line-height: 1.5; }
+
+        /* AJOUT : TRANSCRIPTION DE L'APPEL VISHING INTERCEPTÉ (pur habillage narratif) */
+        .btn-transcription { background: #000; border: 1px solid #00ff41; color: #00ff41; padding: 10px 18px; font-size: 0.85em; font-weight: bold; cursor: pointer; text-transform: uppercase; width: 100%; margin: 15px 0; border-radius: 4px; }
+        .btn-transcription:hover { background: #00ff41; color: #000; }
+        .transcription-box { display: none; background: #001a08; border: 1px solid #00ff41; border-radius: 4px; padding: 18px 20px; margin-bottom: 15px; text-align: left; font-size: 0.88em; line-height: 1.7; color: #b8ffcf; }
+        .transcription-box .repli { margin-bottom: 10px; }
+        .transcription-box .locuteur { color: #00ff41; font-weight: bold; }
+        .transcription-box .locuteur.suspect { color: #ff5555; }
+        .transcription-box .horodatage { color: #557766; font-size: 0.8em; }
+        .transcription-box .note-analyste { color: #ffcc00; font-style: italic; font-size: 0.85em; border-left: 2px solid #ffcc00; padding-left: 10px; margin-top: 12px; }
+
+        .annexe-code { background: #051015; border-left: 3px solid #9d50bb; padding: 12px; margin: 15px 0; text-align: left; font-family: 'Courier New', monospace; font-size: 0.85em; color: #b8efff; white-space: pre-wrap; }
+
+        input { background: #000; border: 1px solid #00d4ff; color: #00d4ff; padding: 12px; width: 300px; font-family: inherit; font-size: 1.1em; text-align: center; outline: none; border-radius: 4px; margin-top: 10px; }
+        button { background: #00d4ff; color: #000; border: none; padding: 12px 30px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 15px; border-radius: 4px; text-transform: uppercase; }
+        button:hover { background: #fff; box-shadow: 0 0 20px #00d4ff; }
+
+        .victory-code { font-size: 2em; font-family: 'Courier New', monospace; color: #fff; background: #00d4ff; padding: 15px; border-radius: 8px; display: inline-block; margin: 20px 0; border: 2px solid #fff; box-shadow: 0 0 15px rgba(0,212,255,0.5); }
+
+        .csv-info { background: #fff; color: #000; padding: 15px; margin-top: 20px; border-radius: 4px; text-align: left; font-size: 0.9em; border-left: 5px solid #00d4ff; }
+
+        .btn-aide-rouge { background: #d80000; color: #fff; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; width: 100%; max-width: 400px; margin-top: 40px; border-radius: 3px; }
+        .aide-box { display: none; background: #fff; color: #333; margin-top: 10px; padding: 20px; width: 90%; max-width: 500px; text-align: left; border-radius: 5px; font-family: sans-serif; border-top: 5px solid #d80000; line-height: 1.5; }
+        
+        .nav-btn { position: absolute; top: 15px; left: 15px; background: #000; color: #00d4ff; border: 1px solid #00d4ff; padding: 5px 12px; text-decoration: none; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
+        .nav-btn:hover { background: #00d4ff; color: #000; }
 </style>
 <body>
 <button type="button" class="btn btn-outline-dark">minecraft</button>
