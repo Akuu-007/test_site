@@ -319,41 +319,7 @@ def final_validation_sequence(alpha, beta, gamma):
             }
         }
 
-        function neutralize() {
-            const a = document.getElementById('keyAlpha').value.trim().toUpperCase();
-            const b = document.getElementById('keyBeta').value.trim();
-            const g = document.getElementById('keyGamma').value.trim().toUpperCase();
-
-            if (a.replace(/\s/g, '') === 'CYBER-77' && ssNb(b) === '384' && ssSans(g) === 'serverexe') {
-                clearInterval(timerId);
-                document.getElementById('mission-content').style.display = 'none';
-                document.getElementById('victory-screen').style.display = 'block';
-                document.body.style.background = "#001a00";
-                document.getElementById('final-bg').style.background = "radial-gradient(circle, #004400 0%, #000000 100%)";
-            } else {
-                enregistrerErreur('investigation', 'alpha="' + a + '", beta="' + b + '", gamma="' + g + '"', 'alpha=CYBER-77, beta=384, gamma=SERVER_EXE');
-                alert("ERREUR CRITIQUE : Alignement des clés incorrect. Accélération de la corruption cryptographique !");
-                timeLeft -= 10;
-                document.getElementById('timer').style.fontSize = "3.5em";
-            }
-        }
 </script>
 
-    <script>
-        const EP_ID = "S03E24";
-        const HINT_COST = {1:1, 2:2, 3:3};
-        let hintsUsed = {1:false, 2:false, 3:false};
-        let episodeScore = 5;
-        function useHint(level) {
-            if (hintsUsed[level] || (level > 1 && !hintsUsed[level - 1])) return;
-            hintsUsed[level] = true;
-            enregistrerIndiceUsage(level);
-            episodeScore -= HINT_COST[level];
-            document.getElementById('hint-score-value').textContent = episodeScore;
-            document.getElementById('hint-tier-' + level).style.display = 'block';
-            const btn = document.getElementById('hintBtn' + level);
-            btn.disabled = true; btn.style.cursor = 'default'; btn.style.opacity = '0.5';
-     
-</script>
 </body>
 </html>
